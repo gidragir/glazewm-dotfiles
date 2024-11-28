@@ -1,0 +1,1 @@
+import{r,j as s}from"./index-main.js";import{c as u}from"./index-Cex4FfrB.js";const t=u({date:{type:"date",formatting:"EEE d MMM t"}}),d=()=>{var e;const[o,a]=r.useState(t.outputMap);return r.useEffect(()=>{t.onOutput(()=>a(t.outputMap))},[]),s.jsx("div",{className:"center",children:(e=o.date)==null?void 0:e.formatted})};export{d as default};
