@@ -138,6 +138,10 @@ window_rules:
         window_title: { regex: ".*? - Peek" }
       - window_process: { equals: "Lively" }
         window_class: { regex: "HwndWrapper" }
+  - commands: ["toggle-floating --centered"]
+    match:
+      - window_process: { regex: "Obsidian" }
+      - window_process: { regex: "Taskmgr" }
 
 binding_modes:
   # When enabled, the focused window can be resized via arrow keys or HJKL.
@@ -196,8 +200,8 @@ keybindings:
   # As an alternative to the resize keybindings above, resize mode enables
   # resizing via arrow keys or HJKL. The binding mode is defined above with
   # the name 'resize'.
-  - commands: ["wm-enable-binding-mode --name resize"]
-    bindings: ["alt+r"]
+  # - commands: ["wm-enable-binding-mode --name resize"]
+  #   bindings: ["alt+r"]
 
   # Disables all keybindings until alt+shift+p is pressed again.
   - commands: ["wm-enable-binding-mode --name pause"]
