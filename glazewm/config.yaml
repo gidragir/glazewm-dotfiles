@@ -140,9 +140,22 @@ window_rules:
         window_class: { regex: "HwndWrapper" }
   - commands: ["toggle-floating --centered"]
     match:
+      # Apps
       - window_process: { regex: "Obsidian" }
+      - window_process: { regex: "BCUninstaller" }
+      - window_process: { regex: "UniGetUI" }
+
+      ## Dev
+      - window_process: { regex: "Docker" }
+      - window_process: { regex: "mmc" }
+
+      # System
       - window_process: { regex: "Taskmgr" }
       - window_process: { regex: "explorer" }
+
+      # Setting's apps
+      # - window_process: { regex: "HyperXNGenuity" }
+      # - window_process: { equals: "ArmouryCrate" }
 
 binding_modes:
   # When enabled, the focused window can be resized via arrow keys or HJKL.
