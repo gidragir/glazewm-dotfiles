@@ -142,6 +142,7 @@ window_rules:
     match:
       - window_process: { regex: "Obsidian" }
       - window_process: { regex: "Taskmgr" }
+      - window_process: { regex: "explorer" }
 
 binding_modes:
   # When enabled, the focused window can be resized via arrow keys or HJKL.
