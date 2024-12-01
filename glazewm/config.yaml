@@ -152,6 +152,7 @@ window_rules:
 
       # Setting's apps
       - window_process: { equals: "ApplicationFrameHost" }
+      - window_process: { equals: "OptionalFeatures" }
 
 binding_modes:
   # When enabled, the focused window can be resized via arrow keys or HJKL.
