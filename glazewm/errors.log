@@ -1,1 +1,3 @@
 [2m2024-11-29T12:27:33.639645Z[0m [31mERROR[0m [2mglazewm[0m[2m:[0m Another instance of the application is already running.
+[2m2024-12-02T09:13:25.107513Z[0m [31mERROR[0m [2mglazewm::common::commands::shell_exec[0m[2m:[0m [3merr_message[0m[2m=[0m"Failed to execute '%ProgramFiles%/SystemInformer/SystemInformer.exe'.\n\nError: Program path is not valid for command '%ProgramFiles%/SystemInformer/SystemInformer.exe'."
+[2m2024-12-02T09:13:31.709975Z[0m [31mERROR[0m [2mglazewm::common::commands::shell_exec[0m[2m:[0m [3merr_message[0m[2m=[0m"Failed to execute '%ProgramFiles%/Mem Reduct/memreduct.exe'.\n\nError: Program path is not valid for command '%ProgramFiles%/Mem Reduct/memreduct.exe'."
