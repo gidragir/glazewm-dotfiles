@@ -106,11 +106,11 @@ window_behavior:
 
 workspaces:
   - name: "1"
-    bind_to_monitor: 0
-  - name: "2"
-    bind_to_monitor: 0
-  - name: "3"
     bind_to_monitor: 1
+  - name: "2"
+    bind_to_monitor: 1
+  - name: "3"
+    bind_to_monitor: 0
   - name: "4"
   - name: "5"
   - name: "6"
@@ -129,15 +129,36 @@ window_rules:
         window_class: { regex: "Chrome_WidgetWin_1|MozillaDialogClass" }
 
       # Ignore rules for various 3rd-party apps.
+      - window_process: { equals: "7zG" }
+      
       - window_process: { equals: "PowerToys" }
         window_class: { regex: 'HwndWrapper\[PowerToys\.PowerAccent.*?\]' }
-      - window_process: { equals: "PowerToys" }
+      - window_process: { regex: "PowerToys" }
+      
         window_title: { regex: ".*? - Peek" }
       - window_process: { equals: "Lively" }
         window_class: { regex: "HwndWrapper" }
       - window_class: { regex: "WindowsForms10.*?" }
+      
+      - window_process: { regex: "1cv8c" }
+      - window_class: { regex: "V8NewLocalFrameBaseWnd" }
+            
+  - commands: ["move --workspace 1", "toggle-fullscreen"]
+    match:
+      - window_process: { regex: "1cedt" }
+      - window_class: { regex: "V8TopLevelFrame" }
+        window_title: { regex: "Конфигуратор" }
+      
+  - commands: ["move --workspace 3", "set-floating --centered", "size --height 96%", "move --direction down"]
+    match:
+      - window_process: { regex: "OUTLOOK" }     
+      
   - commands: ["toggle-floating --centered"]
     match:
+      # 1c
+      - window_class: { regex: "V8TopLevelFrameSDIsec" }
+      - window_process: { regex: "1cv8s" }
+      
       # Apps
       - window_process: { regex: "Obsidian" }
       - window_process: { regex: "BCUninstaller" }
@@ -179,6 +200,10 @@ binding_modes:
         bindings: ["alt+shift+p"]
 
 keybindings:
+
+  - commands: ['wm-toggle-pause']
+    bindings: ['alt+shift+p']
+    
   # Shift focus in a given direction.
   - commands: ["focus --direction left"]
     bindings: ["alt+h", "alt+left"]
@@ -209,48 +234,29 @@ keybindings:
   - commands: ["resize --height -2%"]
     bindings: ["alt+i"]
 
-  # As an alternative to the resize keybindings above, resize mode enables
-  # resizing via arrow keys or HJKL. The binding mode is defined above with
-  # the name 'resize'.
-  # - commands: ["wm-enable-binding-mode --name resize"]
-  #   bindings: ["alt+r"]
-
   # Disables all keybindings until alt+shift+p is pressed again.
   - commands: ["wm-enable-binding-mode --name pause"]
     bindings: ["alt+shift+p"]
 
-  # Change tiling direction. This determines where new tiling windows will
-  # be inserted.
-  - commands: ["toggle-tiling-direction"]
-    bindings: ["alt+v"]
-
-  # Change focus from tiling windows -> floating -> fullscreen.
-  - commands: ["wm-cycle-focus"]
-    bindings: ["alt+space"]
-
-  # Change the focused window to be floating.
-  - commands: ["toggle-floating --centered"]
-    bindings: ["alt+shift+space"]
+  # Change the focused window to be fullscreen.
+  - commands: ["toggle-fullscreen"]
+    bindings: ["alt+z"]
 
   # Change the focused window to be tiling.
   - commands: ["toggle-tiling"]
-    bindings: ["alt+t"]
+    bindings: ["alt+x"]
 
-  # Change the focused window to be fullscreen.
-  - commands: ["toggle-fullscreen"]
-    bindings: ["alt+f"]
-
+  # Change the focused window to be floating.
+  - commands: ["toggle-floating --centered"]
+    bindings: ["alt+c"]
+    
   # Minimize focused window.
   - commands: ["toggle-minimized"]
-    bindings: ["alt+m"]
+    bindings: ["alt+v"]
 
   # Close focused window.
   - commands: ["close"]
     bindings: ["alt+shift+q"]
-
-  # Kill GlazeWM process safely.
-  - commands: ["wm-exit"]
-    bindings: ["alt+shift+e"]
 
   # Re-evaluate configuration file.
   - commands: ["wm-reload-config"]
@@ -260,48 +266,31 @@ keybindings:
   - commands: ["wm-redraw"]
     bindings: ["alt+shift+w"]
 
-  # Launch CMD terminal. Alternatively, use `shell-exec wt` or
-  # `shell-exec %ProgramFiles%/Git/git-bash.exe` to start Windows
-  # Terminal and Git Bash respectively.
-  - commands: ["shell-exec cmd"]
-    bindings: ["alt+enter"]
-
   # Focus the next/previous workspace defined in `workspaces` config.
   - commands: ["focus --next-workspace"]
-    bindings: ["alt+d"]
+    bindings: ["alt+ctrl+d"]
   - commands: ["focus --prev-workspace"]
-    bindings: ["alt+a"]
+    bindings: ["alt+ctrl+a"]
 
   # Change focus to a workspace defined in `workspaces` config.
   - commands: ["focus --workspace 1"]
-    bindings: ["alt+f1"]
+    bindings: ["alt+1"]
   - commands: ["focus --workspace 2"]
-    bindings: ["alt+f2"]
+    bindings: ["alt+2"]
   - commands: ["focus --workspace 3"]
-    bindings: ["alt+f3"]
+    bindings: ["alt+3"]
   - commands: ["focus --workspace 4"]
-    bindings: ["alt+f4"]
+    bindings: ["alt+4"]
   - commands: ["focus --workspace 5"]
-    bindings: ["alt+f5"]
+    bindings: ["alt+5"]
   - commands: ["focus --workspace 6"]
-    bindings: ["alt+f6"]
+    bindings: ["alt+6"]
   - commands: ["focus --workspace 7"]
-    bindings: ["alt+f7"]
+    bindings: ["alt+7"]
   - commands: ["focus --workspace 8"]
-    bindings: ["alt+f8"]
+    bindings: ["alt+8"]
   - commands: ["focus --workspace 9"]
-    bindings: ["alt+f9"]
-
-  # Move the focused window's parent workspace to a monitor in a given
-  # direction.
-  # - commands: ["move-workspace --direction left"]
-  #   bindings: ["alt+shift+a"]
-  # - commands: ["move-workspace --direction right"]
-  #   bindings: ["alt+shift+f"]
-  # - commands: ["move-workspace --direction up"]
-  #   bindings: ["alt+shift+d"]
-  # - commands: ["move-workspace --direction down"]
-  #   bindings: ["alt+shift+s"]
+    bindings: ["alt+9"]
 
   # Move focused window to a workspace defined in `workspaces` config.
   - commands: ["move --workspace 1", "focus --workspace 1"]
