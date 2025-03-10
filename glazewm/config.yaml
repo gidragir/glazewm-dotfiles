@@ -239,15 +239,15 @@ keybindings:
     bindings: ["alt+shift+p"]
 
   # Change the focused window to be fullscreen.
-  - commands: ["toggle-fullscreen"]
+  - commands: ["set-fullscreen"]
     bindings: ["alt+z"]
 
   # Change the focused window to be tiling.
-  - commands: ["toggle-tiling"]
+  - commands: ["set-tiling"]
     bindings: ["alt+x"]
 
   # Change the focused window to be floating.
-  - commands: ["toggle-floating --centered"]
+  - commands: ["set-floating --centered"]
     bindings: ["alt+c"]
     
   # Minimize focused window.
